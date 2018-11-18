@@ -8,7 +8,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Document(collection = "employee")
- 
 public class Employee{
 	
 	@Id
@@ -80,8 +79,8 @@ public class Employee{
 	public Designation getDesignation() {
 		return designation;
 	}
-	public void setDesignation(Designation designation) {
-		this.designation = designation;
+	public void setDesignation(String designation) {
+		this.designation.name = designation;
 	}
 	public double getSalary() {
 		return salary;

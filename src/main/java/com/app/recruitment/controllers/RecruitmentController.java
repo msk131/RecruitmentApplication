@@ -60,18 +60,21 @@ public class RecruitmentController {
 		
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/employee", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Iterable<Employee> save( @RequestParam("file") MultipartFile file) {
+	@RequestMapping(value="/employee", method=RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<String> save( @RequestParam("file") MultipartFile file) {
 		
 		 BufferedReader br = null;
 	        String line = "";
 	        String cvsSplitBy = ",";
-	        
-	        try {
-
-	        	File convFile = new File(file.getOriginalFilename());
-	            convFile.createNewFile(); 
- 	            br = new BufferedReader(new FileReader(convFile));
+	        if (!file.isEmpty()) {
+	            
+	                byte[] bytes;
+					try {
+						bytes = file.getBytes();
+						String completeData = new String(bytes);
+		                String[] rows = completeData.split("#");
+		                String[] column = rows[0].split(",");
+		                
 	            while ((line = br.readLine()) != null) {
 	            	
 	            	Employee emp = new Employee();
@@ -80,7 +83,7 @@ public class RecruitmentController {
 
 	                emp.setName(country[0]); 
 	                emp.setDepartment(country[1]); 
-	                emp.setDesignation(Designation.valueOf(country[2]));  
+	                emp.setDesignation(Designation.valueOf(country[2]).getName());  
 	                emp.setSalary(Double.valueOf(country[3])); 
 	                emp.setJoiningDate(Date.valueOf(country[4])); 
 	                
@@ -102,10 +105,10 @@ public class RecruitmentController {
 	        }
 
   
-		 
+	        }
 			
 
-		return employeeRepository.findAll();
+		return new ResponseEntity<>(HttpStatus.OK);
     }
 	
 	
