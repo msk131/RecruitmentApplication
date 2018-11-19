@@ -4,14 +4,14 @@ This project was bootstrapped with Create React App.
 Configure
 The app requires only one configuration attribute, which is API server url and port. Specify it in config.js. Default is serverUrl = "http://localhost:9080", which is configured for local development.
 
-Steps to Build and run: /n
-Git clone https://github.com/msk131/RecruitmentApplication.git/n
-cd ecruitmentApplicat/nion/n 
-mvnw run:spring-boot/n
-cd recruitment_front_end_react/n
-npm install/n
-npm start/n
-This will run application in develop mode with auto reload feature at http://localhost:3000./n/n
+Steps to Build and run:  
+Git clone https://github.com/msk131/RecruitmentApplication.git 
+cd RecruitmentApplication  
+mvnw run:spring-boot 
+cd recruitment_front_end_react
+npm install 
+npm start 
+This will run application in develop mode with auto reload feature at http://localhost:3000. 
 
 Distribute
 To create production build run:
