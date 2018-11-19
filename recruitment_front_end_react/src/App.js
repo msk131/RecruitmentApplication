@@ -150,7 +150,7 @@ class App extends Component {
                         <hr className={"divider"}/>
                     </Row>
                     <Row>
-                        <Col>
+                        <Col style={{ textTransform: 'capitalize'}}>
                             <MetadataListView columns={this.getMetadataColumns()}
                                               fetchData={this.fetchMetadata}
                                               data={this.state.metaDataPaged.content

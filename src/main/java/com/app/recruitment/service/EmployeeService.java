@@ -8,4 +8,6 @@ public interface EmployeeService {
 	
 	 public Page<Employee> getAllMetaData(Pageable pageable);
 
+	public void save(Employee emp);
+
 }

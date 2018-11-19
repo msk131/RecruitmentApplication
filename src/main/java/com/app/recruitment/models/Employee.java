@@ -2,20 +2,31 @@ package com.app.recruitment.models;
 
 import java.util.Date;
 
+import javax.validation.constraints.Pattern;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
 
 
+@Component
 @Document(collection = "employee")
 public class Employee{
 	
 	@Id
-	String id;
+	private String _id;
 	
+
+ 
+	@Pattern(regexp = "[a-zA-Z0-9]*")
+	@Field("Name")
+	private String name;
 	
-	String name;
-	String department;
+	@Pattern(regexp = "[a-zA-Z0-9 -_* ]*")
+	@Field("Department")
+	private String department;
 	
 	public enum Designation{
 		
@@ -37,11 +48,17 @@ public class Employee{
 	    }    
 		
 	}
-	public Designation designation;
-	double salary;
 	
+	@Field("Designation")
+	private String designation;
+	
+	@Field("Salary")
+	private double salary;
+	
+	
+	@Field("Joining Date")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
-	Date joiningDate;
+	private Date joiningDate;
 	
 	
 	
@@ -49,21 +66,15 @@ public class Employee{
 		 
 	}
 	
-	public Employee(String id, String name, String department, Designation designation, double salary, Date joiningDate) {
+	public Employee( String name, String department, String designation, double salary, Date joiningDate) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.department = department;
 		this.designation = designation;
 		this.salary = salary;
 		this.joiningDate = joiningDate;
 	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
+	 
 	public String getName() {
 		return name;
 	}
@@ -76,11 +87,11 @@ public class Employee{
 	public void setDepartment(String department) {
 		this.department = department;
 	}
-	public Designation getDesignation() {
+	public String getDesignation() {
 		return designation;
 	}
 	public void setDesignation(String designation) {
-		this.designation.name = designation;
+		this.designation = designation;
 	}
 	public double getSalary() {
 		return salary;
