@@ -4,7 +4,11 @@ This project was bootstrapped with Create React App.
 Configure
 The app requires only one configuration attribute, which is API server url and port. Specify it in config.js. Default is serverUrl = "http://localhost:9080", which is configured for local development.
 
-Build and run
+Steps to Build and run:
+Git clone https://github.com/msk131/RecruitmentApplication.git
+cd ecruitmentApplication
+mvnw run:spring-boot
+cd recruitment_front_end_react
 npm install
 npm start
 This will run application in develop mode with auto reload feature at http://localhost:3000.
